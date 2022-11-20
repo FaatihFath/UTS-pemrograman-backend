@@ -37,8 +37,8 @@ class PatientsController extends Controller
             'no phone' => $request->phone,
             'address' => $request->address,
             'status' => $request->status,
-            'masuk' => $request->in_date_at,
-            'keluar' => $request->out_date_at,
+            'masuk' => $request->data_masuk,
+            'keluar' => $request->data_keluar,
         ];
         # menggunakan pasien untuk insert data
         $patient = Patients::create($input);
@@ -92,8 +92,8 @@ class PatientsController extends Controller
                 'phone' => $request->phone ?? $patientsinput->phone,
                 'address' => $request->address ?? $patientsinput->address,
                 'status' => $request->status ?? $patientsinput->status,
-                'in_date_at' => $request->in_date_at ?? $patientsinput->masuk,
-                'out_date_at' => $request->out_date_at ?? $patientsinput->keluar,
+                'in_date_at' => $request->data_masuk ?? $patientsinput->masuk,
+                'out_date_at' => $request->data_keluar ?? $patientsinput->keluar,
             ]);
 
             $data = [
