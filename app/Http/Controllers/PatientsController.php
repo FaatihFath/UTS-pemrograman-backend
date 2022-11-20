@@ -34,11 +34,11 @@ class PatientsController extends Controller
         # menangkap request
         $input = [
             'name' => $request->name,
-            'phone' => $request->phone,
+            'no phone' => $request->phone,
             'address' => $request->address,
             'status' => $request->status,
-            'in_date_at' => $request->in_date_at,
-            'out_date_at' => $request->out_date_at,
+            'masuk' => $request->in_date_at,
+            'keluar' => $request->out_date_at,
         ];
         # menggunakan pasien untuk insert data
         $patient = Patients::create($input);
@@ -67,14 +67,14 @@ class PatientsController extends Controller
 
         if ($patientsshow) {
             $data = [
-                'message' => 'Get Detail Resource',
+                'message' => 'Detail Resource',
                 'data' => $patientsshow,
             ];
             # mengembalikan data (json) status code 200
             return response()->json($data, 200);
         } else {
             $data = [
-                'message' => 'Resource not found',
+                'message' => 'sumber not found',
             ];
             # mengembalikan data (json) status code 404
             return response()->json($data, 404);
@@ -92,8 +92,8 @@ class PatientsController extends Controller
                 'phone' => $request->phone ?? $patientsinput->phone,
                 'address' => $request->address ?? $patientsinput->address,
                 'status' => $request->status ?? $patientsinput->status,
-                'in_date_at' => $request->in_date_at ?? $patientsinput->in_date_at,
-                'out_date_at' => $request->out_date_at ?? $patientsinput->out_date_at,
+                'in_date_at' => $request->in_date_at ?? $patientsinput->masuk,
+                'out_date_at' => $request->out_date_at ?? $patientsinput->keluar,
             ]);
 
             $data = [
